@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.template.db.mapper.TestMapper">
+  <resultMap id="BaseResultMap" type="com.project.template.db.model.Test">
+    <id column="f_id" jdbcType="INTEGER" property="fId" />
+    <result column="f_name" jdbcType="VARCHAR" property="fName" />
+    <result column="f_number" jdbcType="INTEGER" property="fNumber" />
+    <result column="f_date" jdbcType="DATE" property="fDate" />
+    <result column="f_status" jdbcType="TINYINT" property="fStatus" />
+    <result column="f_amount" jdbcType="DECIMAL" property="fAmount" />
+    <result column="f_remark" jdbcType="VARCHAR" property="fRemark" />
+    <result column="f_create_time" jdbcType="TIMESTAMP" property="fCreateTime" />
+    <result column="f_modify_time" jdbcType="TIMESTAMP" property="fModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_name, f_number, f_date, f_status, f_amount, f_remark, f_create_time, f_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_test
+    where f_id = #{fId,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.project.template.db.model.Test">
+    insert into t_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        f_id,
+      </if>
+      <if test="fName != null">
+        f_name,
+      </if>
+      <if test="fNumber != null">
+        f_number,
+      </if>
+      <if test="fDate != null">
+        f_date,
+      </if>
+      <if test="fStatus != null">
+        f_status,
+      </if>
+      <if test="fAmount != null">
+        f_amount,
+      </if>
+      <if test="fRemark != null">
+        f_remark,
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time,
+      </if>
+      <if test="fModifyTime != null">
+        f_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="fName != null">
+        #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fNumber != null">
+        #{fNumber,jdbcType=INTEGER},
+      </if>
+      <if test="fDate != null">
+        #{fDate,jdbcType=DATE},
+      </if>
+      <if test="fStatus != null">
+        #{fStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fAmount != null">
+        #{fAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fRemark != null">
+        #{fRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateTime != null">
+        #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fModifyTime != null">
+        #{fModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.project.template.db.model.Test">
+    update t_test
+    <set>
+      <if test="fName != null">
+        f_name = #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fNumber != null">
+        f_number = #{fNumber,jdbcType=INTEGER},
+      </if>
+      <if test="fDate != null">
+        f_date = #{fDate,jdbcType=DATE},
+      </if>
+      <if test="fStatus != null">
+        f_status = #{fStatus,jdbcType=TINYINT},
+      </if>
+      <if test="fAmount != null">
+        f_amount = #{fAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fRemark != null">
+        f_remark = #{fRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateTime != null">
+        f_create_time = #{fCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fModifyTime != null">
+        f_modify_time = #{fModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByName" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List"/>
+    from
+      t_test
+    where
+      f_name = #{name,jdbcType=VARCHAR}
+  </select>
+</mapper>
