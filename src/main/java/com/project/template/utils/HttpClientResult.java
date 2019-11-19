@@ -17,6 +17,7 @@ public class HttpClientResult implements Serializable {
 
     private static final long serialVersionUID = 2168152194164783950L;
 
+
     /**
      * 响应状态码
      */

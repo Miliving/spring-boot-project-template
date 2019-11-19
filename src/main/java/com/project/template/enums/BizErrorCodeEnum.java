@@ -17,10 +17,12 @@ public enum BizErrorCodeEnum {
      */
     SUCCESS_CODE(1, "操作成功"),
 
+
     /**
      * 系统错误
      */
     SYSTEM_ERROR(999999, "系统错误"),
+
 
     /**
      * 未知接口名
@@ -34,10 +36,24 @@ public enum BizErrorCodeEnum {
     VERIFY_FAIL(100002, "验签失败");
 
 
+    /**
+     * 错误码
+     */
     private Integer code;
 
+
+    /**
+     * 错误信息
+     */
     private String message;
 
+
+    /**
+     * Gets by code.
+     *
+     * @param code the code
+     * @return the by code
+     */
     public static BizErrorCodeEnum getByCode(Integer code) {
         for (BizErrorCodeEnum item : BizErrorCodeEnum.values()) {
             if (item.getCode().equals(code)) {

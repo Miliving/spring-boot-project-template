@@ -16,6 +16,8 @@ public class Test {
 
     private String fName;
 
+    private String fMobile;
+
     private Integer fNumber;
 
     private Date fDate;

@@ -21,6 +21,7 @@ public class TaskUtil {
     @Resource
     private HttpUtilV1 httpUtilV1;
 
+
     @Async("poolExecutor")
     public Future<String> asyncTask01() {
         try {

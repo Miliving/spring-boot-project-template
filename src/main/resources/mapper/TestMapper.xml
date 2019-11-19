@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.project.template.db.model.Test">
     <id column="f_id" jdbcType="INTEGER" property="fId" />
     <result column="f_name" jdbcType="VARCHAR" property="fName" />
+    <result column="f_mobile" jdbcType="VARCHAR" property="fMobile" />
     <result column="f_number" jdbcType="INTEGER" property="fNumber" />
     <result column="f_date" jdbcType="DATE" property="fDate" />
     <result column="f_status" jdbcType="TINYINT" property="fStatus" />
@@ -13,7 +14,7 @@
     <result column="f_modify_time" jdbcType="TIMESTAMP" property="fModifyTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    f_id, f_name, f_number, f_date, f_status, f_amount, f_remark, f_create_time, f_modify_time
+    f_id, f_name, f_mobile, f_number, f_date, f_status, f_amount, f_remark, f_create_time, f_modify_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,6 +30,9 @@
       </if>
       <if test="fName != null">
         f_name,
+      </if>
+      <if test="fMobile != null">
+        f_mobile,
       </if>
       <if test="fNumber != null">
         f_number,
@@ -59,6 +63,9 @@
       <if test="fName != null">
         #{fName,jdbcType=VARCHAR},
       </if>
+      <if test="fMobile != null">
+        #{fMobile,jdbcType=VARCHAR},
+      </if>
       <if test="fNumber != null">
         #{fNumber,jdbcType=INTEGER},
       </if>
@@ -87,6 +94,9 @@
     <set>
       <if test="fName != null">
         f_name = #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fMobile != null">
+        f_mobile = #{fMobile,jdbcType=VARCHAR},
       </if>
       <if test="fNumber != null">
         f_number = #{fNumber,jdbcType=INTEGER},
@@ -119,6 +129,25 @@
     from
       t_test
     where
+      f_name = #{name,jdbcType=VARCHAR} limit 1
+  </select>
+
+  <select id="getUsers" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List"/>
+    from
+      t_test
+    where
       f_name = #{name,jdbcType=VARCHAR}
   </select>
+
+  <select id="findByNameAndMobile" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+      t_test
+    where
+      f_name = #{name,jdbcType=VARCHAR} and f_mobile = #{mobile,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

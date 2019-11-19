@@ -1,4 +1,4 @@
-# SpringBoot 默认支持的配置
+###### 项目配置中心 ######
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -39,9 +39,24 @@ spring:
           auth: true
           ssl:
             enable: true
+          starttls:
+            enable: true
+            required: true
 
 # mybatis相关配置
 mybatis:
   mapper-locations: classpath:mapper/**/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
+
+# mybatis分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+# 自定义属性
+mail:
+  fromMail:
+    addr: xxxxxx

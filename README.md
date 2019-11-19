@@ -7,8 +7,9 @@
 ```mysql
 CREATE TABLE `t_test` (
   `f_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `f_name` varchar(16) DEFAULT NULL COMMENT '名称',
-  `f_number` int(11) DEFAULT '0' COMMENT '数量',
+  `f_name` varchar(16) DEFAULT NULL COMMENT '姓名',
+  `f_mobile` varchar(11) DEFAULT NULL COMMENT '手机号',
+  `f_number` int(11) DEFAULT '0' COMMENT '编号',
   `f_date` date DEFAULT NULL COMMENT '日期',
   `f_status` tinyint(4) DEFAULT '0' COMMENT '状态：-1-失败; 0-初始态; 1-处理中; 2-成功;',
   `f_amount` decimal(12,2) DEFAULT '0.00' COMMENT '金额',
