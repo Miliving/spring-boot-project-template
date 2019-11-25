@@ -1,6 +1,7 @@
 package com.project.template.db.mapper;
 
 import com.github.pagehelper.Page;
+import com.project.template.annotation.MultiplyDataSource;
 import com.project.template.db.model.Test;
 import org.apache.ibatis.annotations.Param;
 
@@ -64,4 +65,14 @@ public interface TestMapper {
      * @return the test
      */
     Test findByNameAndMobile(@Param("name") String name, @Param("mobile") String mobile);
+
+
+    /**
+     * Data source test test.
+     *
+     * @param name the name
+     * @return the test
+     */
+    @MultiplyDataSource(name = "slave")
+    Test dataSourceTest(@Param("name") String name);
 }

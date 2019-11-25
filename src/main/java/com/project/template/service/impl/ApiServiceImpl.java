@@ -112,4 +112,11 @@ public class ApiServiceImpl implements IApiService {
     public void sendEmail() {
         emailUtil.sendSimpleMail("xxx@163.com", "emailTest", "Hello spring Email");
     }
+
+    @Override
+    public Test dataSourceTest(String name) {
+        Test test = testMapper.dataSourceTest(name);
+        log.info("日期：{}，创建时间：{}", test.getFDate(), test.getFCreateTime());
+        return test;
+    }
 }

@@ -150,4 +150,13 @@
       f_name = #{name,jdbcType=VARCHAR} and f_mobile = #{mobile,jdbcType=VARCHAR}
   </select>
 
+  <select id="dataSourceTest" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    t_test
+    where
+    f_name = #{name,jdbcType=VARCHAR} limit 1
+  </select>
+
 </mapper>

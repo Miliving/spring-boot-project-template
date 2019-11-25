@@ -34,7 +34,7 @@ public interface IApiService {
      * Gets users.
      *
      * @param name name
-     * @return Page<Test>  users
+     * @return Page<Test>   users
      */
     Page<Test> getUsers(String name);
 
@@ -52,4 +52,13 @@ public interface IApiService {
      * Send email.
      */
     void sendEmail();
+
+
+    /**
+     * Data source test test.
+     *
+     * @param name the name
+     * @return the test
+     */
+    Test dataSourceTest(String name);
 }

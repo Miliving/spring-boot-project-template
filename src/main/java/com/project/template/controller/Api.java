@@ -99,4 +99,19 @@ public class Api {
     public void sendEmail() {
         apiService.sendEmail();
     }
+
+
+
+    /**
+     * 多数据源测试
+     *
+     * @param name 姓名
+     * @return Test
+     */
+    @GetMapping("/dataSourceTest/{name}")
+    @ResponseBody
+    public Test dataSourceTest(@PathVariable String name) {
+        return apiService.dataSourceTest(name);
+    }
+
 }

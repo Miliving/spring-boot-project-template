@@ -5,11 +5,11 @@ spring:
     time-zone: GMT+8
 
   # 数据库配置
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
-    username: root
-    password: root
+  # datasource:
+    # driver-class-name: com.mysql.jdbc.Driver
+    # url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
+    # username: root
+    # password: root
 
   # Redis配置(关于连接池均使用了默认配置)
   redis:
@@ -60,3 +60,17 @@ pagehelper:
 mail:
   fromMail:
     addr: xxxxxx
+
+master:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+slave:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306/test2?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
