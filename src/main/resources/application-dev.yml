@@ -4,12 +4,35 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-  # 数据库配置
-  # datasource:
+    # 数据库配置(单数据源时)
+    # datasource:
     # driver-class-name: com.mysql.jdbc.Driver
     # url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
     # username: root
     # password: root
+  datasource:
+    master:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      pool-name: HikariPool-1
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+    slave:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test2?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
+      username: root
+      password: root
+      pool-name: HikariPool-2
+      minimum-idle: 6
+      maximum-pool-size: 16
+      idle-timeout: 660000
+      max-lifetime: 1600000
+      connection-timeout: 60000
 
   # Redis配置(关于连接池均使用了默认配置)
   redis:
@@ -23,7 +46,6 @@ spring:
         max-idle: 8
         min-idle: 0
         max-wait: -1
-
 
   # 邮件配置
   mail:
@@ -60,17 +82,3 @@ pagehelper:
 mail:
   fromMail:
     addr: xxxxxx
-
-master:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/test?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
-    username: root
-    password: root
-
-slave:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/test2?useAffectedRows=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=GMT%2B8
-    username: root
-    password: root

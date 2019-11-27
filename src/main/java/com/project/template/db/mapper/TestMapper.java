@@ -1,7 +1,7 @@
 package com.project.template.db.mapper;
 
 import com.github.pagehelper.Page;
-import com.project.template.annotation.MultiplyDataSource;
+import com.project.template.annotation.DynamicDataSource;
 import com.project.template.db.model.Test;
 import org.apache.ibatis.annotations.Param;
 
@@ -73,6 +73,6 @@ public interface TestMapper {
      * @param name the name
      * @return the test
      */
-    @MultiplyDataSource(name = "slave")
+    @DynamicDataSource(name = "slave")
     Test dataSourceTest(@Param("name") String name);
 }

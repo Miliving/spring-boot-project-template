@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author suibin.wu
  */
-public class DynamicDataSource  extends AbstractRoutingDataSource {
+public class DataSourceRoute extends AbstractRoutingDataSource {
 
     private static final ThreadLocal<String> CONTEXT_HOLDER = new ThreadLocal<>();
 
@@ -22,11 +22,12 @@ public class DynamicDataSource  extends AbstractRoutingDataSource {
      * @param defaultTargetDataSource the default target data source
      * @param targetDataSources       the target data sources
      */
-    public DynamicDataSource(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
+    public DataSourceRoute(DataSource defaultTargetDataSource, Map<String, DataSource> targetDataSources) {
         super.setDefaultTargetDataSource(defaultTargetDataSource);
         super.setTargetDataSources(new HashMap<>(targetDataSources));
         super.afterPropertiesSet();
     }
+
 
 
     @Override

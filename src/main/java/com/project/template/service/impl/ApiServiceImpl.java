@@ -1,6 +1,7 @@
 package com.project.template.service.impl;
 
 import com.github.pagehelper.Page;
+import com.project.template.configuration.DataSourceConfiguration;
 import com.project.template.db.mapper.TestMapper;
 import com.project.template.db.model.Test;
 import com.project.template.model.ResultModel;
@@ -11,10 +12,12 @@ import com.project.template.utils.HttpUtilV1;
 import com.project.template.utils.RedisUtil;
 import com.project.template.utils.TaskUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.concurrent.Future;
 
 /**
@@ -40,6 +43,14 @@ public class ApiServiceImpl implements IApiService {
 
     @Resource
     private EmailUtil emailUtil;
+
+    @Resource
+    @Qualifier("master")
+    private DataSource master;
+
+    @Resource
+    @Qualifier("slave")
+    private DataSource slave;
 
 
     /**
@@ -113,10 +124,19 @@ public class ApiServiceImpl implements IApiService {
         emailUtil.sendSimpleMail("xxx@163.com", "emailTest", "Hello spring Email");
     }
 
+
+    /**
+     * 多数据源测试
+     *
+     * @param name the name
+     * @return Test
+     */
     @Override
     public Test dataSourceTest(String name) {
         Test test = testMapper.dataSourceTest(name);
         log.info("日期：{}，创建时间：{}", test.getFDate(), test.getFCreateTime());
+        DataSourceConfiguration.logDS(master);
+        DataSourceConfiguration.logDS(slave);
         return test;
     }
 }

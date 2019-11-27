@@ -1,6 +1,6 @@
 package com.project.template.aop;
 
-import com.project.template.annotation.MultiplyDataSource;
+import com.project.template.annotation.DynamicDataSource;
 import com.project.template.enums.DataSourceType;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -27,7 +27,7 @@ public class DataSourceAspect implements Ordered {
     /**
      * Data source point cut.
      */
-    @Pointcut("@annotation(com.project.template.annotation.MultiplyDataSource)")
+    @Pointcut("@annotation(com.project.template.annotation.DynamicDataSource)")
     public void dataSourcePointCut() {
 
     }
@@ -44,16 +44,16 @@ public class DataSourceAspect implements Ordered {
     public Object around(ProceedingJoinPoint point) throws Throwable {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
-        MultiplyDataSource multiplyDataSource = method.getAnnotation(MultiplyDataSource.class);
+        DynamicDataSource multiplyDataSource = method.getAnnotation(DynamicDataSource.class);
         if (null == multiplyDataSource) {
-            DynamicDataSource.setDataSource(DataSourceType.MASTER.getName());
+            DataSourceRoute.setDataSource(DataSourceType.MASTER.getName());
         } else {
-            DynamicDataSource.setDataSource(multiplyDataSource.name());
+            DataSourceRoute.setDataSource(multiplyDataSource.name());
         }
         try {
             return point.proceed();
         } finally {
-            DynamicDataSource.clearDataSource();
+            DataSourceRoute.clearDataSource();
         }
     }
 
