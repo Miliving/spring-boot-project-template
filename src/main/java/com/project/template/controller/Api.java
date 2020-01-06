@@ -6,6 +6,7 @@ import com.project.template.db.model.Test;
 import com.project.template.model.ResultModel;
 import com.project.template.pojo.req.RequestVO;
 import com.project.template.service.IApiService;
+import com.project.template.service.IRetryService;
 import com.project.template.utils.ValidateMsgUtil;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class Api {
 
     @Resource
     IApiService apiService;
+
+    @Resource
+    IRetryService retryService;
 
 
     /**
@@ -101,7 +105,6 @@ public class Api {
     }
 
 
-
     /**
      * 多数据源测试
      *
@@ -112,6 +115,16 @@ public class Api {
     @ResponseBody
     public Test dataSourceTest(@PathVariable String name) {
         return apiService.dataSourceTest(name);
+    }
+
+
+    /**
+     * spring-retry：重试框架测试
+     */
+    @GetMapping("/retry")
+    @ResponseBody
+    public void reTryTest() {
+        retryService.testRetry();
     }
 
 }
